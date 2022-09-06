@@ -145,7 +145,7 @@ p1 <- predict(tree, training)
 tab1 <- table(Predicted = p1, Actual = training$Churn)
 tab2 <- table(Predicted = pred_tree, Actual = testing$Churn)
 print(paste('Decision Tree Accuracy',sum(diag(tab2))/sum(tab2)))
-# [1] "Decision Tree Accuracy 0.0.866366366366366"
+# [1] "Decision Tree Accuracy 0.866366366366366"
 
 # Can Random Forest do better let's find out
 # Random Forest First Model
@@ -226,15 +226,15 @@ print(rfModel_new)
 pred_rf_new <- predict(rfModel_new, testing)
 caret::confusionMatrix(pred_rf_new, testing$Churn)
 
-# the improved and the initial mode have similar accuracy for the testing dataset
+# the improved and the initial model have similar accuracy for the testing dataset
 # specificity improved for the improved model from 64% to 78%
-# sensitivity declined from 98.9% (initial) and 97.37% (improved)
+# sensitivity declined from 98.9% (initial) to 97.37% (improved)
 
-# Which variables are the most valuable for teh model
+# Which variables are the most valuable for the model?
 # Random Forest Feature Importance
 varImpPlot(rfModel_new, sort=T, n.var = 10, main = 'Top 10 Feature Importance')
 
-# MDA - total Day minutes, customer service calls and international play most important
+# MDA - total Day minutes, customer service calls and international plan are most important
 # MDG -however, in addition to total day minutes and customer service calls
 # State is also a good variable for separating Churn from Non-churn customers
 
