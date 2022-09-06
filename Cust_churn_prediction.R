@@ -1,4 +1,4 @@
-# Churm Prediction Comparing Logistic Regression, Decision Tree and Random Forest
+# Churn Prediction Comparing Logistic Regression, Decision Tree and Random Forest
 # For the Classification Problem
 # Data from the Telcom Churn Dataset
 # https://www.kaggle.com/datasets/mnassrib/telecom-churn-datasets?resource=download
@@ -18,7 +18,7 @@ churn1 <- read.csv('churn-bigml-80.csv')
 churn2 <- read.csv('churn-bigml-20.csv')
 churn <- rbind(churn1,churn2)
 str(churn)
-# turn required variables to factor factor
+# turn required variables to factor
 churn$Churn <- as.factor(churn$Churn)
 churn$State <- as.factor(churn$State)
 churn$International.plan <- as.factor(churn$International.plan)
@@ -110,7 +110,7 @@ fitted.results <- predict(LogModel,newdata=testing,type='response')
 fitted.results <- ifelse(fitted.results > 0.5,1,0)
 misClasificError <- mean(fitted.results != testing$Churn)
 print(paste('Logistic Regression Accuracy',1-misClasificError))
-# [1] "Logistic Regression Accuracy 0.0.854354354354354"
+# [1] "Logistic Regression Accuracy 0.854354354354354"
 
 # Logistic Regression Confusion Matrix
 
@@ -124,7 +124,7 @@ exp(cbind(OR=coef(LogModel), confint(LogModel)))
 # of Churn 8 - 9 folds
 
 # Lets try the Decision Tree Model
-# using those variable whi increased the odds the most for simplicity sake
+# using those variable which increased the odds the most for simplicity sake
 tree <- ctree(Churn~State+International.plan+Voice.mail.plan+
                 Total.intl.calls, training)
 plot(tree)
